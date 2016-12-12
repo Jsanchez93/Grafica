@@ -2,7 +2,7 @@
 
 @section("cuerpo")
 
-<a class="nueva btn btn-primary" href="{{ url('/') }}">Nueva grafica</a>
+<a class="nueva btn btn-primary" href="{{ secure_url('/') }}">Nueva grafica</a>
 <div id="container" style="height: {{ $size."px" }};"></div>
 
 @endsection
