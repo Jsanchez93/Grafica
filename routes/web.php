@@ -12,9 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('datos');
 });
 
-Route::get('grafica/', function() {
-    return view('grafica');
-});
+Route::post('grafica/', 'GraficaController@grafica');

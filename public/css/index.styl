@@ -1,0 +1,55 @@
+@import 'nib'
+
+negro = #333333
+
+#container
+	display block
+	margin 0 auto
+	min-width 320px
+	width 90%
+
+#FormData
+	margin 20px auto
+	width 500px
+	#line
+		relative top -14px left
+	.cont
+		.serie
+			input
+				margin-bottom 5px
+				width 100%			
+			span
+				display none
+				color red				
+				&:hover
+					cursor pointer
+	.line
+		background-color rgba(negro,0.3)
+		clearfix()
+		display inline-block
+		height 1px
+		width 100%
+	.msj
+		border-radius 4px
+		margin-top 10px
+		padding 10px 0
+		text-align center		
+		width 100%
+	&.eliminando
+		.cont
+			.serie
+				input
+					width 95%
+				span
+					display inline-block
+	table
+		margin-top 20px
+		width 100%
+		input,select
+			width 100%
+			
+
+.nueva
+	margin 10px 0 0 10%
+	
+	

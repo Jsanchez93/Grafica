@@ -1,234 +1,136 @@
 @extends('layout.master')
 
-@section("cssExtra")
-@endsection
-
 @section("cuerpo")
 
-
-<div id="container" style="min-width: 310px; display: block; height: 600px; margin: 0 auto; width: 90%"></div>
-
+<a class="nueva btn btn-primary" href="{{ url('/') }}">Nueva grafica</a>
+<div id="container" style="height: {{ $size."px" }};"></div>
 
 @endsection
 
 @section("jsExtra")
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-	<script>
-		$(function () {
-			Highcharts.chart('container', {
-				chart: {
-		            type: 'line'
-		        },
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+@php
+	$maxX = 0;
+	$maxY = 0;
+	$datos = array();
+	foreach ($series as $value) {
+		$aux = explode("-", $value);
+		array_push($datos, $aux);		
+		$maxY = ($aux[0]>$maxY)?$aux[0]:$maxY;
+		$maxX = ($aux[1]>$maxX)?$aux[1]:$maxX;
+	}
+	$aux = array(0,0);	
+@endphp
+<script>
+	$(function () {
+		Highcharts.chart('container', {
+			chart: {
+	            type: 'line'
+	        },
+			title: {
+				text: '{!! $titulo !!}',
+				x: -20 //center
+			},
+			subtitle: {
+				text: 'Profundidad vs Tiempo',
+				x: -20
+			},
+			xAxis: {
 				title: {
-					text: 'Perforación en ø14',
-					x: -20 //center
+					text: 'Tiempo (h)'
 				},
-				subtitle: {
-					text: 'Profundidad vs Tiempo',
-					x: -20
+				min: 0,
+				max: {{$maxX+5}},
+				opposite: true
+			},
+			yAxis: {
+				title: {
+					text: 'Profundidad ({{ $medida }})'
 				},
-				xAxis: {
-					title: {
-						text: 'Tiempo (h)'
+				reversed: true,
+				min: 0,
+				max: {{$maxY+10}}
+			},
+			tooltip: {
+				valueSuffix: '',
+				enabled: true,
+				pointFormat: "Value: {point.y:,.1f} mm"
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle',
+				borderWidth: 0
+			},
+			plotOptions: {
+				line: {
+					dataLabels: {
+						enabled: false
 					},
-					min: 0,
-					max: 20,
-					opposite: true
-				},
-				yAxis: {
-					title: {
-						text: 'Profundidad (m)'
+					enableMouseTracking: false
+				}
+			},
+			series: [
+				{
+					name: '{{ $proyecto }}',						
+					data: [{
+						y: 0,
+						x: 0,
+						name: "Inicio"													
 					},
-					reversed: true,
-					min: 0,
-					max: 230
-				},
-				tooltip: {
-					valueSuffix: '',
-					enabled: true,
-					pointFormat: "Value: {point.y:,.1f} mm"
-				},
-				legend: {
-					layout: 'vertical',
-					align: 'right',
-					verticalAlign: 'middle',
-					borderWidth: 0
-				},
-				plotOptions: {
-					line: {
-						dataLabels: {
-							enabled: true
-						},
-						enableMouseTracking: false
-					}
-				},
-				series: [
-					{
-						name: 'Tokyo',						
-						data: [{
-							y: 0,
-							x: 0,
-							name: "Inicio"													
-						},{
-							y: 20,
-							x: 10,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 40,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 60,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 80,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 93,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 109,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 143,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 156,
-							x: 12,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 160,
-							x: 15,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 165,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 167,
-							x: 12,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 174,
-							x: 12,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 181,
-							x: 12,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 188,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 193,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 196,
-							x: 7,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						},{
-							y: 215,
-							x: 16,
-							name: "optional",
-							marker: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 4
-							}
-						}]						
-					}
-				]
-			});
+					@foreach ($datos as $dato)
+						@if (!$loop->last)
+							{
+								y: {{ $dato[0] }},
+								x: {{ $aux[1] }},
+								name: "Inicio"													
+							},
+							@php
+								$aux[0] = $dato[0];
+							@endphp
+							{
+								y: {{ $aux[0] }},
+								x: {{ $dato[1] }},
+								name: "Inicio",
+									marker: {
+									enabled: true,
+									symbol: 'circle',
+									radius: 4
+								}												
+							},
+							@php
+								$aux[1] = $dato[1];
+							@endphp
+						@else
+							{
+								y: {{ $dato[0] }},
+								x: {{ $aux[1] }},
+								name: "Inicio"													
+							},
+							@php
+								$aux[0] = $dato[0];
+							@endphp
+							{
+								y: {{ $aux[0] }},
+								x: {{ $dato[1] }},
+								name: "Inicio",
+								marker: {
+									enabled: true,
+									symbol: 'circle',
+									radius: 4
+								}
+							}	
+							@php
+								$aux[1] = $dato[1];
+							@endphp
+						@endif					
+					@endforeach
+					]						
+				}
+			]
 		});
-	</script>
+	});
+</script>
 
 @endsection
