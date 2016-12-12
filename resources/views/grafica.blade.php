@@ -58,10 +58,7 @@
 				pointFormat: "Value: {point.y:,.1f} mm"
 			},
 			legend: {
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'middle',
-				borderWidth: 0
+				align: 'center'				
 			},
 			plotOptions: {
 				line: {

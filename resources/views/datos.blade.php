@@ -5,11 +5,11 @@
 	{{ csrf_field() }}
 	<div class="form-group">
 		<label for="titulo">Titulo:</label>		
-		<input type="text" class="form-control" id="titulo" name="titulo" placeholder="ej. 600">
+		<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo ej. Perforacion en ø14">
 	</div>
 	<div class="form-group">
 		<label for="size">Tamaño (px):</label>		
-		<input type="number" value="650" class="form-control" id="size" name="size" placeholder="Titulo ej. Perforacion en ø14">
+		<input type="number" value="650" class="form-control" id="size" name="size" placeholder="ej. 600">
 	</div>
 	<table>
 		<tr>
@@ -72,6 +72,7 @@
 				var boton = $("#delete_field");
 				boton.text('Eliminar campo');
 				boton.removeClass('btn-danger');
+				boton.addClass('hidden');
 				$("#FormData").removeClass('eliminando');
 				$(".msj").addClass('hidden');
 			}
