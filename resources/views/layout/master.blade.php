@@ -6,7 +6,7 @@
 	<title>Well drilling chart</title>
 	<link rel="icon" href="{{ secure_asset('img/raindrop.png') }}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('css/index.css') }}">
 	@yield("cssExtra")
 </head>
 <body>
