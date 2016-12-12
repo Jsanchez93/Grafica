@@ -2,7 +2,7 @@
 
 @section("cuerpo")
 
-<a class="nueva btn btn-primary" href="{{ secure_url('/') }}">Nueva grafica</a>
+<a class="nueva btn btn-primary" href="{{ url('/') }}">Nueva grafica</a>
 <div id="container" style="height: {{ $size."px" }};"></div>
 
 @endsection
@@ -16,7 +16,10 @@
 	$datos = array();
 	foreach ($series as $value) {
 		$aux = explode("-", $value);
-		array_push($datos, $aux);		
+		$aux[0] = str_replace(",", ".", $aux[0]);
+		$aux[1] = str_replace(",", ".", $aux[1]);
+		array_push($datos, $aux);
+
 		$maxY = ($aux[0]>$maxY)?$aux[0]:$maxY;
 		$maxX = ($aux[1]>$maxX)?$aux[1]:$maxX;
 	}

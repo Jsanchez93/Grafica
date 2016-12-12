@@ -1,16 +1,20 @@
 @extends('layout.master')
 
 @section("cuerpo")
-<form id="FormData" class="form-inline" action="{{ secure_url('grafica') }}" method="post" accept-charset="utf-8">
+<form id="FormData" class="table" action="{{ url('grafica') }}" method="post" accept-charset="utf-8">
 	{{ csrf_field() }}
-	<div class="form-group">
-		<label for="titulo">Titulo:</label>		
-		<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo ej. Perforacion en ø14">
-	</div>
-	<div class="form-group">
-		<label for="size">Tamaño (px):</label>		
-		<input type="number" value="650" class="form-control" id="size" name="size" placeholder="ej. 600">
-	</div>
+	<table>
+		<tr>
+			<td>
+				<label for="titulo">Titulo:</label>
+				<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo ej. Perforacion en ø14">
+			</td>
+			<td>
+				<label for="size">Tamaño (px):</label>
+				<input type="number" value="650" class="form-control" id="size" name="size" placeholder="ej. 600">
+			</td>
+		</tr>
+	</table>
 	<table>
 		<tr>
 			<td><label for="medida">Medida profundidad:</label>		</td>
