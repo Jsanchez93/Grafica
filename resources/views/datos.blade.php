@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section("cuerpo")
-<form id="FormData" class="form-inline" action="{{ url('grafica') }}" method="post" accept-charset="utf-8">
+<form id="FormData" class="form-inline" action="{{ secure_url('grafica') }}" method="post" accept-charset="utf-8">
 	{{ csrf_field() }}
 	<div class="form-group">
 		<label for="titulo">Titulo:</label>		
