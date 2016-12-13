@@ -1,17 +1,17 @@
 @extends('layout.master')
 
 @section("cuerpo")
-<form id="FormData" class="table" action="{{ secure_url('grafica') }}" method="post" accept-charset="utf-8">
+<form id="FormData" class="form-inline" action="{{ secure_url('grafica') }}" method="post" accept-charset="utf-8">
 	{{ csrf_field() }}
-	<table>
+	<table class="table">
 		<tr>
 			<td>
 				<label for="titulo">Titulo:</label>
-				<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo ej. Perforacion en ø14">
+				<input required type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo ej. Perforacion en ø14">
 			</td>
 			<td>
 				<label for="size">Tamaño (px):</label>
-				<input type="number" value="650" class="form-control" id="size" name="size" placeholder="ej. 600">
+				<input required type="number" value="650" class="form-control" id="size" name="size" placeholder="ej. 600">
 			</td>
 		</tr>
 	</table>
@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td><label for="proyecto">Proyecto: </label></td>
-			<td><input type="text" class="form-control" id="proyecto" name="proyecto" placeholder="ej. Anda"></td>
+			<td><input required type="text" class="form-control" id="proyecto" name="proyecto" placeholder="ej. Anda"></td>
 		</tr>
 	</table>
 	<div class="cont">
@@ -48,7 +48,44 @@
 @endsection
 @section("jsExtra")
 <script>
-	$(document).ready(function() {		
+	$(document).ready(function() {	
+
+		/*$("#FormData").on('submit', function(event) {
+			event.preventDefault();
+
+			var text_actual = $(".serie input");
+			var str = $.trim(text_actual.val());
+			for (var i = 0, len = str.length; i < len; i++) {
+				if (str[i] == null)
+					break;
+				switch (str[i]){
+					case "1":
+					case "2":
+					case "3": 
+					case "4": 
+					case "5": 
+					case "6": 
+					case "7": 
+					case "8": 
+					case "9": 
+					case "0": 
+					case ".": 
+					case ",": 
+					case "-":
+					case " ":						
+						break;
+					default: 
+						str = str.slice(0, i) + str.slice(i+1);
+						i--;
+						break;
+				}
+				
+			}
+			text_actual.val(str);
+
+			return false;
+		});*/
+
 		$("#new_field").on('click', function(event) {
 			event.preventDefault();
 			var campo = '<div class="serie"><input type="text" name="series[]" required class="form-control" placeholder="Profundidad-Tiempo"> <span class="eliminar-campo glyphicon glyphicon-remove" aria-hidden="true"></span></div>';
@@ -57,7 +94,7 @@
 		});
 
 		$("#delete_field").on('click', function(event) {
-			event.preventDefault();		
+			event.preventDefault();				
 			$(this).toggleClass('btn-danger');			
 			$(".msj").toggleClass('hidden');
 			$("#FormData").toggleClass('eliminando');
@@ -65,24 +102,27 @@
 			if( $(this).hasClass('btn-danger') )
 				$(this).text('Eliminando...');
 			else
-				$(this).text('Eliminar campo');
-
+				$(this).text('Eliminar campo');		
 		});
 
 		$("#FormData").on('click', 'span.eliminar-campo', function(event) {
 			event.preventDefault();	
-			$(this).parent('.serie').remove();			
-			if( $("#FormData .serie").length <= 1 ){
-				var boton = $("#delete_field");
-				boton.text('Eliminar campo');
-				boton.removeClass('btn-danger');
-				boton.addClass('hidden');
-				$("#FormData").removeClass('eliminando');
-				$(".msj").addClass('hidden');
+			if( $("#FormData .serie").length > 1 ){				
+				$(this).parent('.serie').remove();	
+			}
+			if( $("#FormData .serie").length <= 1 ){				
+				restriccion();
 			}
 		});
 	});
 
-
+	function restriccion(){
+		var boton = $("#delete_field");
+		boton.text('Eliminar campo');
+		boton.removeClass('btn-danger');
+		boton.addClass('hidden');
+		$("#FormData").removeClass('eliminando');
+		$(".msj").addClass('hidden');
+	}
 </script>
 @endsection
