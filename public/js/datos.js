@@ -1,5 +1,7 @@
 $(document).ready(function() {	
 
+	$('select').material_select();
+
 	$("#FormData").on('submit', function(event) {
 		var i,str,text_actual,len,guion,cont;
 		var cont = 0;
@@ -51,15 +53,16 @@ $(document).ready(function() {
 
 	$("#new_field").on('click', function(event) {
 		event.preventDefault();
-		var campo = '<div class="serie"><input type="text" name="series[]" required class="form-control" placeholder="Profundidad-Tiempo"> <span class="eliminar-campo glyphicon glyphicon-remove" aria-hidden="true"></span></div>';
-		$("#line").before(campo);
-		$("#delete_field").removeClass('hidden');
+		var n = $("#FormData .cont .serie").length +1;
+		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'" name="series[]" required><label for="serie-'+n+'">Profundidad-Tiempo</label><span class="eliminar-campo glyphicon glyphicon-remove" aria-hidden="true"></span><i class="material-icons small red-text text-darken-4">cancel</i></div></div>';
+		$(".cont").append(campo);
+		$("#delete_field").removeClass('hide');
 	});
 
 	$("#delete_field").on('click', function(event) {
 		event.preventDefault();				
 		$(this).toggleClass('btn-danger');			
-		$(".msj").toggleClass('hidden');
+		$(".msj").toggleClass('hide');
 		$("#FormData").toggleClass('eliminando');
 
 		if( $(this).hasClass('btn-danger') )
@@ -84,7 +87,7 @@ function restriccion(){
 	var boton = $("#delete_field");
 	boton.text('Eliminar campo');
 	boton.removeClass('btn-danger');
-	boton.addClass('hidden');
+	boton.addClass('hide');
 	$("#FormData").removeClass('eliminando');
-	$(".msj").addClass('hidden');
+	$(".msj").addClass('hide');
 }

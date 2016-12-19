@@ -10,29 +10,22 @@ rojo 	= #B50000
 	width 90%
 
 #FormData
-	margin 20px auto
-	max-width 700px
-	min-width 320px
-	width 50%
-	#line
-		relative top -14px left
-	.cont
-		.serie
-			input
-				margin-bottom 5px
-				transition border 0.3s linear
-				width 100%			
-			span
-				color red
-				display none				
-				&:hover
-					cursor pointer
-	.line
-		background-color rgba(negro,0.3)
-		clearfix()
-		display inline-block
-		height 1px
+	table
+		margin-top 20px
 		width 100%
+		input,select
+			width 100%
+	.serie	
+		.input-field
+			margin-top 1px !important				
+		.material-icons					
+			absolute top 10px right
+			display none
+			&:hover
+				cursor pointer
+		&:hover
+			.material-icons
+				display inline-block !important
 	.msj
 		border-radius 4px
 		margin-top 10px
@@ -46,15 +39,7 @@ rojo 	= #B50000
 					width 95%
 				span
 					display inline-block
-	table
-		margin-top 20px
-		width 100%
-		input,select
-			width 100%
 
-.borde
-	border-color rgba(rojo, .5)
-	transition border 0.3s linear
 
 .error
 	padding 25px 0
