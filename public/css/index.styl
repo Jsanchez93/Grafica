@@ -10,6 +10,7 @@ rojo 	= #B50000
 	width 90%
 
 #FormData
+	margin-top 25px 
 	table
 		margin-top 20px
 		width 100%
@@ -19,8 +20,7 @@ rojo 	= #B50000
 		.input-field
 			margin-top 1px !important				
 		.material-icons					
-			absolute top 10px right
-			display none
+			absolute top 10px right			
 			&:hover
 				cursor pointer
 		&:hover
@@ -59,14 +59,16 @@ rojo 	= #B50000
 	
 	
 @media (max-width: 600px)
-	#principal
-		text-align center
-	.nueva
-		border-radius 0
-		margin 5px 0 15px !important
-		padding 15px 0
+	.nueva		
+		margin 5px 0 15px 1% !important		
 		width 98%
 	#container
-		width 100% !important
+		width 100% !important	
+
+@media (max-width: 425px)
 	#FormData
-		text-align left !important
+		.btn-large
+			margin 0 0 10px 0 !important
+			width 100% !important
+		> .row
+			margin 0 !important

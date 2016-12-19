@@ -39,10 +39,10 @@ $(document).ready(function() {
 			}
 			text_actual.val(str);
 			if(!patt.test(str) || guion>1){
-				text_actual.addClass('borde')
+				text_actual.addClass('invalid');
 			}
 			else{
-				text_actual.removeClass('borde');
+				text_actual.removeClass('invalid');
 				cont++;
 			}
 		});		
@@ -54,40 +54,13 @@ $(document).ready(function() {
 	$("#new_field").on('click', function(event) {
 		event.preventDefault();
 		var n = $("#FormData .cont .serie").length +1;
-		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'" name="series[]" required><label for="serie-'+n+'">Profundidad-Tiempo</label><span class="eliminar-campo glyphicon glyphicon-remove" aria-hidden="true"></span><i class="material-icons small red-text text-darken-4">cancel</i></div></div>';
-		$(".cont").append(campo);
-		$("#delete_field").removeClass('hide');
+		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'" name="series[]" required><label for="serie-'+n+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
+		$(".cont").append(campo);		
 	});
-
-	$("#delete_field").on('click', function(event) {
-		event.preventDefault();				
-		$(this).toggleClass('btn-danger');			
-		$(".msj").toggleClass('hide');
-		$("#FormData").toggleClass('eliminando');
-
-		if( $(this).hasClass('btn-danger') )
-			$(this).text('Eliminando...');
-		else
-			$(this).text('Eliminar campo');		
-	});
-
-	$("#FormData").on('click', 'span.eliminar-campo', function(event) {
-		event.preventDefault();	
-		if( $("#FormData .serie").length > 1 ){				
-			$(this).parent('.serie').remove();	
-		}
-		if( $("#FormData .serie").length <= 1 ){				
-			restriccion();
-		}
+	
+	$("#FormData").on('click', 'i.eliminar-campo', function(event) {
+		event.preventDefault();					
+		$(this).parent().parent('.serie').remove();					
 	});
 });
 
-
-function restriccion(){
-	var boton = $("#delete_field");
-	boton.text('Eliminar campo');
-	boton.removeClass('btn-danger');
-	boton.addClass('hide');
-	$("#FormData").removeClass('eliminando');
-	$(".msj").addClass('hide');
-}

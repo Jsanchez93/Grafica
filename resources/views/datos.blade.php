@@ -2,9 +2,10 @@
 
 @section("cuerpo")
 
+<div class="container">
 
 <div class="row">
-	<form id="FormData" class="col s12 teal-text text-lighten-1" action="{{ secure_url('grafica') }}" method="post" accept-charset="utf-8">
+	<form id="FormData" class="col s12 teal-text text-lighten-1" action="{{ url('grafica') }}" method="post" accept-charset="utf-8">
 		{{ csrf_field() }}
 		<div class="row">
 			<div class="input-field col l6 m6 s12">
@@ -27,29 +28,31 @@
 				<label for="proyecto">Proyecto </label>
 			</div>
 		</div>
-		<span class="divider"></span>
-
+		
+		<div class="row right-align">
+			<button id="new_field" class="btn-large waves-effect waves-light" type="submit" name="new_field">Agregar campo
+				<i class="material-icons right">add</i>
+			</button>		
+			<button id="enviar" class="btn-large waves-effect waves-light" type="submit" name="enviar">Graficar
+				<i class="material-icons right">send</i>
+			</button>
+		</div>
+		
 		<div class="row cont">
 			<div class="col s12 serie">				
 				<div class="input-field">
 					<input type="text" id="serie-1" name="series[]" required>
-					<label for="serie-1">Profundidad-Tiempo</label>
-					<span class="eliminar-campo glyphicon glyphicon-remove" aria-hidden="true"></span>					
+					<label for="serie-1">Profundidad-Tiempo</label>					
 				</div>				
 			</div>
-		</div>
-
-		<span class="divider"></span>
-
-		<a id="new_field" href="#" class="btn btn-default">Agregar campo</a>
-		<a id="delete_field" href="#" class="hide btn btn-default">Eliminar campo</a>
-		<button id="enviar" type="submit" class="btn btn-primary">Graficar</button>
-		<p class="msj hide">Click en la X al lado del campo que desea borrar.</p>
-
+		</div>	
+		
+		
+		
 	</form>
 </div>
 
-
+</div>
 
 @endsection
 @section("jsExtra")
