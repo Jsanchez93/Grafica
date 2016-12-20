@@ -1,6 +1,34 @@
 $(document).ready(function() {	
 
 	$('select').material_select();
+	
+	$("#new_project").on('click', function(event) {
+		event.preventDefault();
+
+
+		$.ajax({
+			url: path+'/ajax/projects_tabs',
+			type: 'GET',
+			dataType: 'html',
+			data: {view: 'project'},
+		})
+		.done(function(data) {
+			var resp = data.replace("#ID#", );
+			var list = $(".new_projects .list ul");
+			var n = list.find('li').length +1;
+			list.append('<li class="tab"><a href="#tab'+n+'">Test '+n+'</a></li>');
+			$(".new_projects").append(resp);
+			if( $(".new_projects .list").hasClass('hide') ){
+				$(".new_projects .list").removeClass('hide');
+			}
+			$('ul.tabs').tabs();			
+		})
+		.fail(function() {
+			console.log("error");
+		});
+		
+	});
+
 
 	$("#FormData").on('submit', function(event) {
 		var i,str,text_actual,len,guion,cont;

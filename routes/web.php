@@ -15,4 +15,10 @@ Route::get('/', function () {
     return view('datos');
 });
 
+Route::group(['prefix' => 'ajax'], function () {
+    Route::get('projects_tabs', function ()    {
+       return view('ajax.new_project') ;
+    });
+});
+
 Route::post('grafica/', 'GraficaController@grafica');
