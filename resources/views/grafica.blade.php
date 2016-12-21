@@ -2,11 +2,16 @@
 
 @section("cuerpo")
 
-<a class="nueva btn-large" href="{{ url('/') }}">
-	Nueva grafica
-	<i class="material-icons right">note_add</i>
-</a>
-<div id="container" style="height: {{ $size."px" }};"></div>
+
+
+<div id="vdp" style="height: {{ $size."px" }};"></div>
+
+
+<div class="right-align">
+	<a class="teal darken-3 nueva btn-large" href="{{ url('penetration_rate') }}">
+		Nueva grafica <i class="material-icons right">note_add</i>
+	</a>
+</div>
 
 @endsection
 
@@ -30,7 +35,7 @@
 @endphp
 <script>
 	$(function () {
-		Highcharts.chart('container', {
+		Highcharts.chart('vdp', {
 			chart: {
 	            type: 'line'
 	        },

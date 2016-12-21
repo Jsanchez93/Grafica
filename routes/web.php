@@ -10,15 +10,16 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('penetration_rate', function () {
     return view('datos');
 });
 
-Route::group(['prefix' => 'ajax'], function () {
-    Route::get('projects_tabs', function ()    {
-       return view('ajax.new_project') ;
-    });
+Route::group(['prefix' => 'ajax'], function () {    
+    Route::post('projects_tabs', 'GraficaController@new_project');
 });
 
-Route::post('grafica/', 'GraficaController@grafica');
+Route::post('graph', 'GraficaController@grafica');

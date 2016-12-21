@@ -1,32 +1,45 @@
-$(document).ready(function() {	
+$(document).ready(function() {
+	var pass = true;
 
+    $(".button-collapse").sideNav();
+	$(".dropdown-button").dropdown();
 	$('select').material_select();
-	
-	$("#new_project").on('click', function(event) {
+
+	$(".tabs-projects ul").on('click', 'a', function(event) {
 		event.preventDefault();
+		var a = $(this);
+		var id = a.attr('id-tab');
+		$(".tabs-projects ul li a").removeClass('active');
+		a.addClass('active');
+		$(".tabs-projects .tab").addClass('hide');
+		$("#tab"+id).removeClass('hide');
 
+	});
 
+	var projects = 1;
+	$("#new_project").on('click', function(event) {
+		event.preventDefault();			
 		$.ajax({
 			url: path+'/ajax/projects_tabs',
-			type: 'GET',
+			type: 'POST',
 			dataType: 'html',
-			data: {view: 'project'},
+			data: {n: n+1},
 		})
-		.done(function(data) {
-			var resp = data.replace("#ID#", );
-			var list = $(".new_projects .list ul");
-			var n = list.find('li').length +1;
-			list.append('<li class="tab"><a href="#tab'+n+'">Test '+n+'</a></li>');
-			$(".new_projects").append(resp);
-			if( $(".new_projects .list").hasClass('hide') ){
-				$(".new_projects .list").removeClass('hide');
+		.done(function(data) {			
+			var list = $(".tabs-projects ul");
+			var n = projects +1;
+			list.append('<li> <a href="#" id-tab="'+n+'"> Proyecto '+n+' <i class="delete_tab material-icons small red-text text-darken-2 hide-on-large-only">cancel</i></a> </li>');			
+			var resp = data.replace('#TAB#', 'tab'+n);
+			$(".tabs-projects").append(resp);
+			if( list.hasClass('hide') ){
+				list.removeClass('hide');
 			}
-			$('ul.tabs').tabs();			
+			projects += 1;
 		})
 		.fail(function() {
 			console.log("error");
 		});
-		
+				
 	});
 
 
@@ -79,11 +92,25 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#new_field").on('click', function(event) {
+	$(".tabs-projects").on('click', '.delete_tab', function(event) {
 		event.preventDefault();
-		var n = $("#FormData .cont .serie").length +1;
-		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'" name="series[]" required><label for="serie-'+n+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
-		$(".cont").append(campo);		
+		if(confirm("¿Seguro que desea borrar esta pestaña?")){
+			var id = $(this).parent().attr('id-tab');
+			var li = $(this).parent().parent('li');			
+			$("#tab"+id).remove();
+			li.remove();
+			$(".default-tab").addClass('active');
+			$("#tab1").removeClass('hide');
+		}		
+	});
+
+	$(".tabs-projects").on('click','.new_field', function(event) {
+		event.preventDefault();
+		var cont = $(this).parent().parent('.cont');
+		var project_id = cont.parent().attr('id');
+		var n = cont.find('.serie').length +1;
+		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'-'+project_id+'" name="series_'+project_id+'[]" required><label for="serie-'+n+'-'+project_id+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
+		cont.append(campo);
 	});
 	
 	$("#FormData").on('click', 'i.eliminar-campo', function(event) {

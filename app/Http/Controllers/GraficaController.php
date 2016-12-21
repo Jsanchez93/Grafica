@@ -22,4 +22,11 @@ class GraficaController extends Controller
 				'proyecto' => $proyecto
 			]);
     }
+
+
+    public function new_project(Request $request){
+        return view('ajax.new_project') ;
+    }
+
+
 }

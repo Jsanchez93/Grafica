@@ -1,21 +1,43 @@
 @import 'nib'
 
-negro 	= #333333
-rojo 	= #B50000
+blanco 		= #ffffff
+negro 		= #212121
+gris 		= #616161
+gris_claro	= #eeeeee
+rojo 		= #B50000
 
-#container
+*
+	outline none !important
+	
+nav
+	.icon_menu
+		font-size 40px !important
+	.userView
+		.background
+			img								
+				width 100%				
+
+#vdp
 	display block
 	margin 0 auto
 	min-width 320px
 	width 90%
 
 #FormData
-	margin-top 25px 
+	margin-top 50px 	
 	table
 		margin-top 20px
 		width 100%
 		input,select
 			width 100%
+	.msj
+		border-radius 4px
+		margin-top 10px
+		padding 10px 0
+		text-align center		
+		width 100%
+	.new_projects
+		margin-top 30px
 	.serie	
 		.input-field
 			margin-top 1px !important				
@@ -25,13 +47,7 @@ rojo 	= #B50000
 				cursor pointer
 		&:hover
 			.material-icons
-				display inline-block !important
-	.msj
-		border-radius 4px
-		margin-top 10px
-		padding 10px 0
-		text-align center		
-		width 100%
+				display inline-block !important	
 	&.eliminando
 		.cont
 			.serie
@@ -39,8 +55,6 @@ rojo 	= #B50000
 					width 95%
 				span
 					display inline-block
-
-
 .error
 	padding 25px 0
 	ol
@@ -54,21 +68,65 @@ rojo 	= #B50000
 				color red
 
 .nueva
-	margin 10px 0 0 10%
+	margin 50px 5% 20px 0
+
+.tabs-projects	
+	ul
+		display flex
+		overflow-x auto
+		overflow-y hidden
+		width 100%
+		li
+			display inline-block
+			flex-grow 1
+			height 48px
+			line-height 48px
+			margin 0
+			min-width 130px
+			padding 0 
+			text-align center
+			text-transform uppercase			
+			a	
+				border-bottom 2px solid blanco
+				border-radius 5px 5px 0 0
+				color gris 
+				display block				
+				font-size 14px
+				height 100%
+				overflow hidden
+				padding 0 35px 0 10px
+				relative top left
+				text-overflow ellipsis
+				transition all 0.28s linear
+				width 100%
+				.delete_tab
+					absolute top 10px right 5px
+					&:hover
+						color #b71c1c !important
+				&.active
+					border-color gris
+				&:hover
+					background-color gris_claro
+					.delete_tab						
+						display inline-block !important
+	.tab
+		padding-top 40px 
+		transition all 0.28s linear
+					
+
+
 	
-.tabs-projects
-	padding-top 25px !important
 	
 	
 	
 @media (max-width: 600px)
 	.nueva		
-		margin 5px 0 15px 1% !important		
+		margin 40px 1% 5px 0 !important		
 		width 98%
-	#container
-		width 100% !important	
+	#vdp
+		width 100% !important		
 
-@media (max-width: 425px)
+@media (max-width: 440px)
 	#FormData
 		.btn-large
 			margin 0 0 10px 0 !important
