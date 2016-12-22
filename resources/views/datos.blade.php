@@ -28,7 +28,7 @@
 				<label for="proyecto">Proyecto</label>
 			</div>
 		</div>
-		
+		 
 		<div class="row">
 			<div class="col s12 right-align">
 				<button id="" class="new_field teal darken-3 btn-large waves-effect waves-light" type="submit" name="new_field">Agregar campo

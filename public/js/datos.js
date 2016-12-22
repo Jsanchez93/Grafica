@@ -6,12 +6,7 @@ $.ajaxSetup({
 
 $(document).ready(function() {
 	var pass = true;
-
-    $(".button-collapse").sideNav();
-	$(".dropdown-button").dropdown();
 	$('select').material_select();
-
-	
 
 	var projects = 1;
 	$("#new_project").on('click', function(event) {
