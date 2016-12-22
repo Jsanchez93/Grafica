@@ -8,7 +8,7 @@
 
 
 <div class="right-align">
-	<a class="teal darken-3 nueva btn-large" href="{{ url('penetration_rate') }}">
+	<a class="teal darken-3 nueva btn-large" href="{{ secure_url('penetration_rate') }}">
 		Nueva grafica <i class="material-icons right">note_add</i>
 	</a>
 </div>
