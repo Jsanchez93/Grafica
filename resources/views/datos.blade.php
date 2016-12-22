@@ -58,5 +58,5 @@
 
 @endsection
 @section("jsExtra")
-<script src="{{ secure_url('js/datos.js') }}?v=1.1"></script>
+<script src="{{ secure_url('js/datos.js') }}?v=1.2"></script>
 @endsection

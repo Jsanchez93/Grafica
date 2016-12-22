@@ -8,7 +8,7 @@
 	<link rel="icon" href="{{ secure_asset('img/raindrop.png') }}">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-	<link rel="stylesheet" href="{{ secure_asset('css/index.css') }}?v=1.1">
+	<link rel="stylesheet" href="{{ secure_asset('css/index.css') }}?v=1.2">
 	@yield("cssExtra")
 </head>
 <body>
