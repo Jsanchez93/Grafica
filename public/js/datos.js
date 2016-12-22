@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 $(document).ready(function() {
 	var pass = true;
 
@@ -5,16 +11,7 @@ $(document).ready(function() {
 	$(".dropdown-button").dropdown();
 	$('select').material_select();
 
-	$(".tabs-projects ul").on('click', 'a', function(event) {
-		event.preventDefault();
-		var a = $(this);
-		var id = a.attr('id-tab');
-		$(".tabs-projects ul li a").removeClass('active');
-		a.addClass('active');
-		$(".tabs-projects .tab").addClass('hide');
-		$("#tab"+id).removeClass('hide');
-
-	});
+	
 
 	var projects = 1;
 	$("#new_project").on('click', function(event) {
@@ -23,7 +20,7 @@ $(document).ready(function() {
 			url: path+'/ajax/projects_tabs',
 			type: 'POST',
 			dataType: 'html',
-			data: {n: n+1},
+			data: {n: projects+1},
 		})
 		.done(function(data) {			
 			var list = $(".tabs-projects ul");
@@ -92,24 +89,13 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".tabs-projects").on('click', '.delete_tab', function(event) {
-		event.preventDefault();
-		if(confirm("¿Seguro que desea borrar esta pestaña?")){
-			var id = $(this).parent().attr('id-tab');
-			var li = $(this).parent().parent('li');			
-			$("#tab"+id).remove();
-			li.remove();
-			$(".default-tab").addClass('active');
-			$("#tab1").removeClass('hide');
-		}		
-	});
+	
 
-	$(".tabs-projects").on('click','.new_field', function(event) {
+	$(".new_field").on('click', function(event) {
 		event.preventDefault();
-		var cont = $(this).parent().parent('.cont');
-		var project_id = cont.parent().attr('id');
+		var cont = $('.cont');		
 		var n = cont.find('.serie').length +1;
-		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'-'+project_id+'" name="series_'+project_id+'[]" required><label for="serie-'+n+'-'+project_id+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
+		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'" name="series[]" required><label for="serie-'+n+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
 		cont.append(campo);
 	});
 	
@@ -119,3 +105,37 @@ $(document).ready(function() {
 	});
 });
 
+/****old*****
+
+
+
+
+
+$(".tabs-projects ul").on('click', 'a', function(event) {
+	event.preventDefault();
+	var a = $(this);
+	var id = a.attr('id-tab');
+	$(".tabs-projects ul li a").removeClass('active');
+	a.addClass('active');
+	$(".tabs-projects .tab").addClass('hide');
+	$("#tab"+id).removeClass('hide');
+
+});
+
+
+
+$(".tabs-projects").on('click', '.delete_tab', function(event) {
+	event.preventDefault();
+	if(confirm("¿Seguro que desea borrar esta pestaña?")){
+		var id = $(this).parent().attr('id-tab');
+		var li = $(this).parent().parent('li');			
+		$("#tab"+id).remove();
+		li.remove();
+		$(".default-tab").addClass('active');
+		$("#tab1").removeClass('hide');
+	}		
+});
+
+
+
+**************/

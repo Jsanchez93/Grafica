@@ -24,8 +24,8 @@ class GraficaController extends Controller
     }
 
 
-    public function new_project(Request $request){
-        return view('ajax.new_project') ;
+    public function new_project(Request $request){        
+        return view('ajax.new_project', ["n"=>$request->n]) ;
     }
 
 
