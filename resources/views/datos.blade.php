@@ -5,7 +5,7 @@
 <div class="container">
 
 <div class="row">
-	<form id="FormData" class="col s12 grey-text text-darken-4" action="{{ secure_url('graph') }}" method="post" accept-charset="utf-8">
+	<form id="FormData" class="col s12 grey-text text-darken-4" action="{{ url('graph') }}" method="post" accept-charset="utf-8">
 		{{ csrf_field() }}
 		<div class="row">
 			<div class="input-field col l6 m6 s12">
@@ -58,5 +58,5 @@
 
 @endsection
 @section("jsExtra")
-<script src="{{ secure_url('js/datos.js') }}?v=1.2"></script>
+<script src="{{ url('js/datos.js') }}?v=1.2"></script>
 @endsection

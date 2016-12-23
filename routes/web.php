@@ -14,12 +14,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('penetration_rate', function () {
-    return view('datos');
-});
+Route::get('penetration_rate', function () { return view('datos'); });
+Route::get('lithology', function () { return view('datos_litologia'); });
+
+
+
+Route::post('graph', 'GraficaController@grafica');
+
+
 
 Route::group(['prefix' => 'ajax'], function () {    
     Route::post('projects_tabs', 'GraficaController@new_project');
 });
-
-Route::post('graph', 'GraficaController@grafica');

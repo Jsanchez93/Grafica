@@ -8,7 +8,7 @@
 
 
 <div class="right-align">
-	<a class="teal darken-3 nueva btn-large" href="{{ secure_url('penetration_rate') }}">
+	<a class="teal darken-3 nueva btn-large" href="{{ url('penetration_rate') }}">
 		Nueva grafica <i class="material-icons right">note_add</i>
 	</a>
 </div>
@@ -17,7 +17,7 @@
 
 @section("jsExtra")
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>	
 @php
 	$maxX = 0;
 	$maxY = 0;
