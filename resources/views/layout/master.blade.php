@@ -27,13 +27,13 @@
 			<ul class="right hide-on-med-and-down">
 				<li><a href="{{ url('penetration_rate') }}">Velocidad de penetración</a></li>				
 				<li><a href="#!">Viscosidad de lodos</a></li>
-				<li><a href="{{ url('/lithology') }}">Litología</a></li>
+				<li><a href="{{ url('/lithology-data') }}">Litología</a></li>
 				<li><a class="dropdown-button" href="#!" data-activates="r_electric">Registro eléctrico<i class="material-icons right">arrow_drop_down</i></a></li>
 			</ul>
 			<ul class="side-nav" id="mobile">				
 				<li><a href="{{ url('penetration_rate') }}">Velocidad de penetración</a></li>
 				<li><a href="#!">Viscosidad de lodos</a></li>
-				<li><a href="{{ url('/lithology') }}">Litología</a></li>								
+				<li><a href="{{ url('/lithology-data') }}">Litología</a></li>								
 				<li><a class="subheader">Registro eléctrico</a></li>
 				<li><a href="#!">Potencial</a></li>
 				<li><a href="#!">Resistividad</a></li>

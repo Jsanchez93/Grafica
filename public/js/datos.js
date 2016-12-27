@@ -1,39 +1,6 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
 $(document).ready(function() {
 	var pass = true;
 	$('select').material_select();
-
-	var projects = 1;
-	$("#new_project").on('click', function(event) {
-		event.preventDefault();			
-		$.ajax({
-			url: path+'/ajax/projects_tabs',
-			type: 'POST',
-			dataType: 'html',
-			data: {n: projects+1},
-		})
-		.done(function(data) {			
-			var list = $(".tabs-projects ul");
-			var n = projects +1;
-			list.append('<li> <a href="#" id-tab="'+n+'"> Proyecto '+n+' <i class="delete_tab material-icons small red-text text-darken-2 hide-on-large-only">cancel</i></a> </li>');			
-			var resp = data.replace('#TAB#', 'tab'+n);
-			$(".tabs-projects").append(resp);
-			if( list.hasClass('hide') ){
-				list.removeClass('hide');
-			}
-			projects += 1;
-		})
-		.fail(function() {
-			console.log("error");
-		});
-				
-	});
-
 
 	$("#FormData").on('submit', function(event) {
 		var i,str,text_actual,len,guion,cont;
@@ -85,12 +52,12 @@ $(document).ready(function() {
 	});
 
 	
-
+	var global_n = 1;
 	$(".new_field").on('click', function(event) {
 		event.preventDefault();
 		var cont = $('.cont');		
-		var n = cont.find('.serie').length +1;
-		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+n+'" name="series[]" required><label for="serie-'+n+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
+		global_n += 1;
+		var campo = '<div class="col s12 serie"><div class="input-field"><input type="text" id="serie-'+global_n+'" name="series[]" required><label for="serie-'+global_n+'">Profundidad-Tiempo</label><i class="material-icons small red-text text-darken-4 eliminar-campo hide-on-large-only">cancel</i></div></div>';
 		cont.append(campo);
 	});
 	

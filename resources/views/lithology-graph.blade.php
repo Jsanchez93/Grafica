@@ -23,18 +23,31 @@
 	<div id="lithology_cont" style="height: {{ $total }}px">
 		@foreach ($values as $element)
 			@if ($loop->first)
-				<div class="block {{ $element[1] }}" style="height: {{ ($element[0]/$total*100) }}%;"></div><!--
+				<div class="block {{ $element[1] }}" style="height: {{ ($element[0]/$total*100) }}%;"></div>
 			@elseif ($loop->last)
-				--><div class="block {{ $element[1] }}" style="height: {{ ($element[0]/$total*100) }}%;"></div>
+				<div class="block {{ $element[1] }}" style="height: {{ ($element[0]/$total*100) }}%;"></div>
 			@else
-				--><div class="block {{ $element[1] }}" style="height: {{ ($element[0]/$total*100) }}%;"></div><!--
+				<div class="block {{ $element[1] }}" style="height: {{ ($element[0]/$total*100) }}%;"></div>
 			@endif			
 		@endforeach
 	</div>
 
-	<br>
 
-	<div id="img-out"></div>
+
+<div class="sido-block valign-wrapper" style="height: 100px">
+  <span class="valign">This should be vertically aligned</span>
+</div>
+<div class="sido-block valign-wrapper" style="height: 500px">
+  <span class="valign">This should be vertically aligned</span>
+</div>
+<div class="sido-block valign-wrapper" style="height: 150px">
+  <span class="valign">This should be vertically aligned</span>
+</div>
+<div class="sido-block valign-wrapper" style="height: 50px">
+  <span class="valign">This should be vertically aligned</span>
+</div>
+
+       
 
 </div>
 
@@ -46,29 +59,18 @@
 <script src="{{ asset('js/html2canvas.js') }}"></script>
 <script>
 	$(document).ready(function() {
-
-
+		var name = 'proyecto';
 		$("#btnSave").click(function(event) { 
 			event.preventDefault();
 			html2canvas($("#lithology_cont"), {
 				onrendered: function(canvas) {
-
-					/*var url = canvas.toDataURL();
+					var url = canvas.toDataURL();
 					$("<a>", {
 						href: url,
-						download: "yolo.png"
+						download: name+".png"
 					})
 					.on("click", function() {$(this).remove()})
-					.appendTo("body")[0].click();*/
-
-					//theCanvas = canvas;
-					//document.body.appendChild(canvas);
-
-					// Convert and download as image 
-					Canvas2Image.saveAsPNG(canvas); 
-					//$("#img-out").append(canvas);
-					// Clean up 
-					//document.body.removeChild(canvas);
+					.appendTo("body")[0].click();
 				}
 			});
 		});

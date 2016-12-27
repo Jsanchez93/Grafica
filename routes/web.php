@@ -15,11 +15,15 @@ Route::get('/', function () {
 });
 
 Route::get('penetration_rate', function () { return view('datos'); });
-Route::get('lithology', function () { return view('datos_litologia'); });
+Route::post('graph', 'GraficaController@graph_penetration_rate');
+
+
+Route::get('lithology-data', function () { return view('lithology-data'); });
+Route::post('lithology-graph', 'GraficaController@graph_lithology');
 
 
 
-Route::post('graph', 'GraficaController@grafica');
+
 
 
 
